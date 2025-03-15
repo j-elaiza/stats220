@@ -8,4 +8,4 @@ A little about me: I am Ellie, and I love to dress up!
 - I am taking STATS 220 because I want to learn more how we process data.
 - I am interested in learning about basically anything as I am a very curious person
 
-A meme that captures how I currently feel about my university studies is ![]([https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif])
+A meme that captures how I currently feel about my university studies is ![](https://media1.tenor.com/m/DgFI-D5vXhkAAAAd/cry.gif)
