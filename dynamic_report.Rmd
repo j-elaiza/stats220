@@ -97,7 +97,7 @@ plot1 + theme(legend.position = ("bottom"),
 #used to name the chart plot2 that fills food_type with time_, and to make the bar more informative and descriptive
 plot2<- latest_data%>%
   ggplot() +
-  geom_bar(aes(x = food_type, fill= (time_))) +
+  geom_bar(aes(x = food_type, fill= time_)) +
   labs(title = "What did my flatmates eat on certain times?",
        subtitle = "Comparing what group of food my flatmates eat between breakfast, lunch, and dinner",
        x ="Food Group",
