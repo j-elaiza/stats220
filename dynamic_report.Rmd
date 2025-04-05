@@ -1,0 +1,121 @@
+---
+title: What are my flatmates eating today? 
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+ body {color:black ;
+  background-color:violet}
+  
+h2 {
+        font-family: 'Yusei Magic', sans-serif;
+      }
+      .shiny-input-container {
+        color: #474747;
+      }
+```
+
+## What are my flatmates eating today?
+
+We did an observational logging about what type of food my flatmates are eating on certain times, and if they used the stove to prepare it. 
+
+This Report shows summaries about the observation.
+
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+logged_data <- ("https://docs.google.com/spreadsheets/d/e/2PACX-1vQey5iL0YQAWoVC5k3JWdGjTHvunGVXUKPspRW_hLMyteO14R9AE4_IGoDIiFgzbC9YZpHZGBGVy35i/pub?output=csv")
+latest_data <- read_csv(logged_data)%>%
+  rename(food_type = 2,
+         time_ = 3,
+         stove_usage = 4,
+         cleanliness = 5,
+         usage = 6)
+```
+
+
+
+**The average minutes spent by my flatmates using the stove is**
+```{r}
+# used to get the  mean of the minutes spent using the stove without the missing values from the second part of the google form
+mean(latest_data$usage,na.rm = TRUE)
+```
+
+
+**The least minutes spent by my flatmates using the stove is**
+```{r}
+#used to get the minimum minutes spent using the stove without the missing values from the second part of the google form
+min(latest_data$usage,na.rm=TRUE)
+
+```
+
+
+
+**The most minutes spent by my flatmates using the stove is**
+```{r}
+#used to get the maximum minutes spent using the stove without the missing values from the second part of the google form
+max(latest_data$usage,na.rm = TRUE)
+```
+
+
+**This bar chart named as Plot 1 compares the variable time_  with the variable stove_usage**
+```{r}
+
+#used to name the chart plot1 that fills time_  with stove_usage, and to make the bar more informative and descriptive
+plot1<- latest_data%>%
+  ggplot(na.rm=TRUE) +
+  geom_bar(aes(x = time_, fill=stove_usage)) +
+  labs(title = "What time did my flatmates used the stove the most?",
+       subtitle = "Comparing what times my flatmates used the stove to prepare their food",
+       x ="Time",
+       y = "Number of meals",
+       caption = " 
+Breakfast - 4:00-10:30
+Lunch - 10:30-15:30 
+Dinner 15:31-3:59")
+
+
+plot1 + theme(legend.position = ("bottom"),
+              legend.key = element_rect(fill = "red", colour = "black"),
+              legend.text = element_text(size = 8, colour = "black"),
+              legend.title = element_text(face = "bold"
+              ))
+```
+
+
+
+
+
+**This bar chart named as Plot 2 compares the variable food_type  with the variable time_**
+```{r}
+#used to name the chart plot2 that fills food_type with time_, and to make the bar more informative and descriptive
+plot2<- latest_data%>%
+  ggplot() +
+  geom_bar(aes(x = food_type, fill= (time_))) +
+  labs(title = "What did my flatmates eat on certain times?",
+       subtitle = "Comparing what group of food my flatmates eat between breakfast, lunch, and dinner",
+       x ="Food Group",
+       y = "Number of meals",
+       caption = " 
+Breakfast - 4:00-10:30
+Lunch - 10:30-15:30 
+Dinner 15:31-3:59")
+
+#used to make the plot2 more creative
+plot2 + theme(legend.position = ("bottom"),
+              legend.key = element_rect(fill = "white", colour = "black"),
+              legend.text = element_text(size = 8, colour = "black"),
+              legend.title = element_text(face = "bold"))
+
+
+```
+
+
+
+
